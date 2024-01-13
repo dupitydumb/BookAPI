@@ -11,6 +11,7 @@ import {
   Center,
   Input,
   InputGroup,
+  Spinner,
   InputRightAddon,
   InputRightElement,
   Hide,
@@ -29,6 +30,7 @@ function App() {
   const [Search, setSearch] = useState("");
   const handleSearch = (event: any) => setSearch(event.target.value);
   const [BookData, setBookData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   function RewriteSearch(search: string) {
     /* Replace spaces with + */
@@ -36,6 +38,7 @@ function App() {
   }
 
   async function GetData() {
+    setIsLoading(true);
     const query = RewriteSearch(Search);
     try {
       const response = await fetch(
@@ -47,6 +50,8 @@ function App() {
       setBookData(data.docs);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
 
     /* Debugging */
@@ -88,13 +93,25 @@ function App() {
                 </Center>
               </div>
               <div className="SearchResults">
+                {isLoading ? (
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
+                    marginTop={10}
+                  />
+                ) : null}
+
                 <Grid templateColumns="repeat(3, 5fr)" gap={2} marginTop={10}>
                   {BookData.map((book: any) => (
                     <li key={book.key}>
                       <CardResult
                         title={book.title}
-                        description={book.author_name[0]}
+                        description="No description available"
                         image={book.cover_i}
+                        genre="Fantasy"
                       />
                     </li>
                   ))}
