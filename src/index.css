@@ -11,7 +11,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  height: 100%;
   background-color: #293241;
 }
 
@@ -30,9 +29,7 @@ code {
 
 .SearchSection {
   margin-top: 2em;
-  justify-content: center;
-  width: 70%;
-  height: 50em;
+  width: 100%;
 }
 
 .App {
@@ -42,6 +39,11 @@ code {
 .Bar {
   color: aliceblue;
   justify-content: center;
+}
+
+.SearchBar {
+  width: 50%;
+  height: 100%;
 }
 
 .SearchResults {

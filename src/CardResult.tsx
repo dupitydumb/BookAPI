@@ -35,15 +35,16 @@ function CardResult({
       direction={{ base: "column", sm: "row" }}
       overflow="hidden"
       variant="outline"
-      height={220}
+      height={200}
       shadow={"md"}
+      width={350}
     >
       <Image
         objectFit="cover"
-        width={150}
         height="100%"
         src={imglink}
         alt="Caffe Latte"
+        maxWidth={150}
       />
 
       <Stack>
